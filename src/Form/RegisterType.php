@@ -54,7 +54,7 @@ class RegisterType extends AbstractType
                 'label' => 'Password',
                 'required' => true,
                 'first_options' => [ 
-                    'label' => 'Mot de passe',
+                    'label' => 'Password',
                     'attr' => [
                         'placeholder' => 'Please enter your password.'
                     ]
