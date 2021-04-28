@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}nhomadz - My cart{% endblock %}
+{% block title %}Nhomadz - My cart{% endblock %}
 
 {% block content %}
 <h1>My cart</h1>
 Find all the products in your cart
+
+{% if cart|length > 0 %}
 <table class="table mt-3">
   <thead>
     <tr>
@@ -13,6 +15,7 @@ Find all the products in your cart
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Total</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -26,12 +29,24 @@ Find all the products in your cart
     {{ product.product.name }}<br/>
     <small>{{ product.product.subtitle }}<small>
     </td>
-    <td>x {{ product.quantity }}</td>
+    <td>
+    <a href="{{ path('decrease_to_cart', { 'id' : product.product.id }) }}">
+        <img src="{{ asset('assets/img/minus2.png') }}" height="13px" alt="Remove a product">
+        </a>
+      x {{ product.quantity }}
+    <a href="{{ path('add_to_cart', { 'id' : product.product.id }) }}">
+        <img src="{{ asset('assets/img/add2.png') }}" height="13px" alt="Add a product">
+        </a>
+    </td>
     <td>
     {{ (product.product.price /100)|number_format(2, ',', '.') }}$
     </td>
     <td>{{ ((product.product.price * product.quantity) /100)|number_format(2, ',', '.') }}$</td>
-    </tr>
+    <td>
+        <a href="{{ path('delete_to_cart', { 'id' : product.product.id }) }}"> 
+            <img src="{{ asset('assets/img/delete.png') }}" height="18px" alt="Supprimer mon produit"
+        </a>
+    </td>
     {% set total = total + (product.product.price * product.quantity) %}
     {% endfor %}
   </tbody>
@@ -41,5 +56,8 @@ Find all the products in your cart
     <b>Total price : </b> {{ (total /100)|number_format(2, ',', '.') }}$
     <a href="" class="btn btn-success btn-block mt-3">Validate my cart</a>
 </div>
-
+{% else %}
+    <hr>
+    <p><b>Your cart is empty.</b></p>
+{% endif %}
 {% endblock %}
