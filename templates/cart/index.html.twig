@@ -54,7 +54,7 @@ Find all the products in your cart
 <div class="text-right mb-5">
     <b>Number of products : </b> {{ cart|length }} <br/>
     <b>Total price : </b> {{ (total /100)|number_format(2, ',', '.') }}$
-    <a href="" class="btn btn-success btn-block mt-3">Validate my cart</a>
+    <a href="{{ path('order') }}" class="btn btn-success btn-block mt-3">Validate my cart</a>
 </div>
 {% else %}
     <hr>
