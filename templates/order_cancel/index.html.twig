@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nhomadz - Payment error{% endblock %}
+
+{% block content %}
+
+<h2>Payment error</h2>
+<p>
+Hello <strong>{{ order.user.firstname }} {{ order.user.lastname}}</strong>.<br/><br/>
+Looks like your payment for the order n°<strong>{{ order.reference }}</strong> had failed.<br/>
+An error confirmation has been sent to your email <strong>{{ order.user.email }}</strong>.
+</p> 
+<a href="{{ path('order') }}" class="btn btn-success">Try the payment again</a>
+{% endblock %}

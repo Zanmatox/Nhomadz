@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nhomadz - Confirm my order{% endblock %}
+
+{% block content %}
+<h2>Confirm my order</h2>
+<p>
+Hello <strong>{{ order.user.firstname }} {{ order.user.lastname}}</strong>.<br/><br/>
+Thank you for your order n° <strong>{{ order.reference }}</strong>.<br/>
+A confirmation has been sent to your email at : <strong>{{ order.user.email }}</strong>.
+<hr>
+Your package will arrive with <strong>{{ order.carrierName }}</strong> at the address <br/>
+{{ order.delivery|raw }}
+<hr>
+In order to follow your order, please check your <a href="{{ path('account_order') }}">account</a>.
+</p> 
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nhomadz - My order{% endblock %}
+
+{% block content %}
+  <h1>My order {{ order.reference}} </h1>
+    <a href="{{ path('account') }}">Back</a>
+    <hr>
+    <strong>Ordered the :</strong> {{ order.createdAt|date('d/m/Y') }}</br>
+    <strong>Order reference :</strong><small>{{ order.reference }}</small></br>
+    <strong>Carrier chosen :</strong> {{ order.carrierName }}</br>
+    <strong>Details:</strong></br>
+ <table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Product price</th>
+      <th scope="col">Total</th>
+    </tr> 
+  </thead>
+  <tbody>
+    {% for product in order.orderDetails %}
+    <tr>
+      <td>{{ product.product }}</td>
+      <td>x {{ product.quantity  }}</td>
+      <td>{{ (product.price /100) |number_format(2, ',', '.') }} $</td>
+      <td>{{ (product.total /100) |number_format(2, ',', '.') }} $</td>
+          </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="text-right">
+    <strong>Products price : </strong>{{ (order.getTotal /100) |number_format(2, ',', '.') }} $</br>
+    <strong>Delivery : </strong>{{ (order.carrierPrice /100) |number_format(2, ',', '.') }} $</br>
+    <strong>Total : </strong>{{ ((order.carrierPrice + order.getTotal)/100) |number_format(2, ',', '.') }} $
+</div>
+{% endblock %}
