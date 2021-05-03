@@ -19,7 +19,7 @@ class AddressType extends AbstractType
 ->add('name', TextType::class, [
                 'label' => 'How do you want to name your address ?',
                 'attr' => [
-                    'placeholder' => 'Name your adrress'
+                    'placeholder' => 'Name your address'
                 ]
             ])
             ->add('firstname', TextType::class, [

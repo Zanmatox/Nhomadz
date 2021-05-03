@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Order;
 use App\Classe\Cart;
+use App\Classe\Mail;
 
 class OrderSuccessController extends AbstractController
 {
@@ -35,7 +36,11 @@ class OrderSuccessController extends AbstractController
             // Modifier le statut isPaid de ma commande en mettant 1
             $order->setIsPaid(1);
             $this->entityManager->flush();
-        
+            
+            $mail = new Mail();
+            $content = "Hello ".$order->getUser()->getFirstname()."<br/>Welcome to your favorite shop.<br><br/>";
+            $mail->send($order->getUser()->getEmail(),$order->getUser()->getFirstname(), 'Thank you for your order on Nhomadz', $content);
+
         }
         
         return $this->render('order_success/index.html.twig',[
