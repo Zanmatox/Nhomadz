@@ -8,6 +8,10 @@
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
+        
+        {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
 
         {% if app.user %}
             <div class="mb-3">
@@ -29,7 +33,8 @@
                 Sign in
             </button>
             <hr>
-            <p> Or do you want to<a href="{{ path('register') }}"> create an account</a> ?</p>
+            <p class="text-center"><a href="{{ path('reset_password') }}"> Forgot password</a> ?</p>
+            <p class="text-center"> Or do you want to<a href="{{ path('register') }}"> create an account</a> ?</p>
         </form>
     </div>
 {% endblock %}
