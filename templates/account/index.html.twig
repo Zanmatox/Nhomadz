@@ -4,10 +4,31 @@
 
 {% block content %}
     <h1>My account</h1>
-    Welcome {{ app.user.firstname }} here's your personal space
+    Welcome {{ app.user.firstname }} here's your personal space<br/>
+       {% if is_granted('ROLE_ADMIN') %}
+    - You're an admin, access to <a href="/admin">administration</a>
+    {% endif %}
     <hr>
-    - <a href="{{ path('account_password') }}"> Change my password</a><br/>
-    - <a href="{{ path('account_address') }}">Change my addresses</a><br/>
-    - <a href="{{ path('account_order') }}">My orders</a>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="account-item text-center">
+            <img src="{{ asset('assets/img/padlock.png') }}" alt="Change my password"></br>
+                <a href="{{ path('account_password') }}">Change my password</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+            <img src="{{ asset('assets/img/home.png') }}" alt="Change my addresses"></br>
+                <a href="{{ path('account_address') }}">Change my addresses</a><br/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+            <img src="{{ asset('assets/img/package.png') }}" alt="My orders"></br>
+                <a href="{{ path('account_order') }}">My orders</a>
+            </div>
+        </div>
+    </div>
+    <hr>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nhomadz - Contact{% endblock %}
+
+{% block content %}
+    <h2> Contact Us</h2>
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    <hr>
+    <div class="row">
+        <div class="col-md-8">{{ form(form) }}</div>
+        <div class="col-md-4">
+            <strong>Nhomadz</strong>
+            <hr>
+            Phone<br/>
+            Address<br/>
+            contact@nhomadz.com<br/>
+        </div>
+    </div>
+
+{% endblock %}
